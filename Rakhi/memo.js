@@ -1,3 +1,10 @@
+/* 
+REACT MEMO
+React.memo is a higher-order component (HOC) provided by React that is used for optimizing the performance of functional components by preventing unnecessary renders. It's a way to memoize a component, meaning it will remember the result of rendering for a given set of props and only re-render when those props change. This can be particularly useful for optimizing functional components that receive the same props frequently but don't need to re-render unless those props change.
+In summary, React.memo is a useful tool for optimizing the rendering performance of functional components by memoizing them based on their props. It's a simple way to avoid unnecessary re-renders and improve the efficiency of your React application.
+*/
+
+//Custom comparison function for reference type since React.memo is doing a shallow comparision
 const arePropsEqual = (oldProps, newProps) => {
   console.log({ oldProps }, { newProps });
   let isEqual = true;
@@ -21,6 +28,7 @@ const Child = React.memo(({ data }) => {
 }, arePropsEqual);
 
 const Parent = () => {
+  const [counter, setCounter] = React.useState(0);
   const [data, setData] = React.useState({ name: 'Diana', age: 8 });
   console.log(`Parent is rendering data - ${data?.name}`);
 
@@ -33,6 +41,13 @@ const Parent = () => {
         }}
       >
         Change Data
+      </button>
+      <button
+        onClick={() => {
+          setCounter(counter + 1);
+        }}
+      >
+        {counter}
       </button>
       <Child data={data} />
     </div>
