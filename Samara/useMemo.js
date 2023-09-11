@@ -16,7 +16,8 @@ const Child = (props) => {
     console.log('Parent is rendering');
   
     const memoizedfn = React.useCallback(() => dosomething(), []);
-    const memoizedData = React.useMemo(() => heavyComputation(), []);
+    // const memoizedData = React.useMemo(() => heavyComputation(), []);
+    const memoizedData = React.useMemo(() => heavyComputation(), [data.name]);
   
     function dosomething() {
       console.log("function called");
